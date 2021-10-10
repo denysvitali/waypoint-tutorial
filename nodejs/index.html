@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://sdx.scsstatic.ch/v2.31.1/css/sdx.min.css" crossorigin="anonymous">
+  <script type="module" src="https://sdx.scsstatic.ch/v2.31.1/js/webcomponents/webcomponents/webcomponents.esm.js"
+    integrity="sha384-biBeqAKixV/VOLI7XReX3FwDwQCKJkNMyzP+2C53YtXjCcP/eopf2DxW2cNiY2nE"
+    crossorigin="anonymous"></script>
+</head>
+
+<body class="sdx">
+  <div class="major-warapper">
+    <div class="main-wrapper-flex">
+      <header>
+        <div class="nav">
+          <nav class="nav__level1" role="navigation">
+            <div class="container">
+              <a class="logo" href="/" tabindex="-1">
+                <span class="logo-lifeform" aria-label="Swisscom Lifeform"></span>
+                <span class="logo-type">
+                  <img src="https://sdx.scsstatic.ch/v2.31.1/images/svgs/swisscom-logo-type.svg">
+                </span>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <div class="page">
+        <div class="container">
+          <div class="margin-v-4">
+            <h1 class="navy">sample-node-app</h1>
+          </div>
+          <h2 class="text-h3">Waypoint Demo</h2>
+          <p>
+            Enter your name in the form below, then press
+            "Greet" to proceed.
+          </p>
+
+            <form class="col-lg-6 container">
+              <div class="row margin-v-4">
+                <sdx-input id="input-name" label="Your Name" placeholder="John Doe"></sdx-input>
+              </div>
+              <div class="row margin-v-4">
+                <div class="col">
+                  <sdx-button-group>
+                    <sdx-button label="Greet" onclick="greet()"></sdx-button>
+                  </sdx-button-group>
+                </div>
+              </div>
+              <div class="row margin-v-4">
+                <p id="result-text"></p>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    const result = document.getElementById('result-text');
+    const inputName = document.getElementById('input-name');
+
+    function greet(){
+      let req = new Request('/api/v1/hello/' + encodeURIComponent(inputName.value));
+      fetch(req).then((response) => {
+        return response.text();
+      }).then((responseText)=>{
+        result.innerText = responseText;
+      });
+    }
+  </script>
+</body>
+</html>
