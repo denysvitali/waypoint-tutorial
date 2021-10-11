@@ -5,7 +5,11 @@ project = "simple-node-app"
 
 app "web" {
     build {
-        use "pack" {}
+        use "pack" {
+          ignore = [
+            "node_modules"
+          ]
+        }
     }
 
     deploy {
